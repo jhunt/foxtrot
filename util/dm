@@ -1,0 +1,14 @@
+#!/bin/bash
+# make a loopback device
+
+dev=/dev/loop0
+img=loop.img
+if [[ ! -f ${img} ]]; then
+  dd if=/dev/zero of=${img} bs=512 count=131072
+fi
+
+echo "setting up loop device \`${dev}'..."
+set -x
+losetup ${dev} ${img}
+echo 0 131072 foxtrot /dev/loop0 0 | dmsetup create foxtrot
+dmsetup ls
