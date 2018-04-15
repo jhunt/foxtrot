@@ -3,18 +3,20 @@
 
 MODULE_LICENSE("Dual BSD/GPL");
 
+#define FOXTROT_VERSION "1.0.0"
+
 static int
-hello_init(void)
+foxtrot_init(void)
 {
-	printk(KERN_ALERT "foxtrot>> Hello, world\n");
+	printk(KERN_INFO "foxtrot v" FOXTROT_VERSION " starting up...\n");
 	return 0;
 }
 
 static void
-hello_exit(void)
+foxtrot_exit(void)
 {
-	printk(KERN_ALERT "foxtrot>> Goodbye, cruel world\n");
+	printk(KERN_INFO "foxtrot v" FOXTROT_VERSION " shutting down...\n");
 }
 
-module_init(hello_init);
-module_exit(hello_exit);
+module_init(foxtrot_init);
+module_exit(foxtrot_exit);
